@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Banking</title>
+  <meta name="description" content="A premium banking experience." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Notifications -->
+    <div id="notification-container"></div>
+
+    <!-- Auth View -->
+    <main id="auth-view" class="view active">
+      <div class="auth-card glass-panel">
+        <div class="auth-header">
+          <div class="logo">
+            <div class="logo-icon"></div>
+            <h1>Apex Bank</h1>
+          </div>
+          <p class="subtitle">Secure, fast, and premium banking.</p>
+        </div>
+        
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+          <div class="input-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required placeholder="you@example.com" />
+          </div>
+          <div class="input-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required placeholder="••••••••" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <p class="switch-auth">New to Apex? <a href="#" id="show-register">Create an account</a></p>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="reg-firstName">First Name</label>
+              <input type="text" id="reg-firstName" required placeholder="John" />
+            </div>
+            <div class="input-group">
+              <label for="reg-lastName">Last Name</label>
+              <input type="text" id="reg-lastName" required placeholder="Doe" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" required placeholder="you@example.com" />
+          </div>
+          <div class="input-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" required placeholder="Min 6 characters" minlength="6" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          <p class="switch-auth">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+        </form>
+      </div>
+    </main>
+
+    <!-- Dashboard View -->
+    <main id="dashboard-view" class="view">
+      <nav class="navbar glass-panel">
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <h2>Apex</h2>
+        </div>
+        <div class="nav-actions">
+          <span id="user-greeting">Hello, User</span>
+          <button id="logout-btn" class="btn btn-ghost">Logout</button>
+        </div>
+      </nav>
+
+      <div class="dashboard-content">
+        <!-- Accounts Section -->
+        <section class="accounts-section">
+          <div class="section-header">
+            <h3>Your Accounts</h3>
+            <button id="create-account-btn" class="btn btn-secondary btn-sm">+ New Account</button>
+          </div>
+          <div id="accounts-list" class="accounts-grid">
+            <!-- Account Cards injected here -->
+          </div>
+        </section>
+
+        <!-- Transactions & Actions Section -->
+        <div class="dashboard-split">
+          <!-- Actions -->
+          <section class="actions-section glass-panel">
+            <h3>Quick Actions</h3>
+            <div class="action-tabs">
+              <button class="tab-btn active" data-target="deposit-form">Deposit</button>
+              <button class="tab-btn" data-target="withdraw-form">Withdraw</button>
+              <button class="tab-btn" data-target="transfer-form">Transfer</button>
+            </div>
+
+            <div class="action-forms">
+              <!-- Deposit -->
+              <form id="deposit-form" class="action-form active">
+                <div class="input-group">
+                  <label for="deposit-account">To Account</label>
+                  <select id="deposit-account" required></select>
+                </div>
+                <div class="input-group">
+                  <label for="deposit-amount">Amount</label>
+                  <input type="number" id="deposit-amount" min="1" step="0.01" required placeholder="0.00" />
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Deposit Funds</button>
+              </form>
+
+              <!-- Withdraw -->
+              <form id="withdraw-form" class="action-form">
+                <div class="input-group">
+                  <label for="withdraw-account">From Account</label>
+                  <select id="withdraw-account" required></select>
+                </div>
+                <div class="input-group">
+                  <label for="withdraw-amount">Amount</label>
+                  <input type="number" id="withdraw-amount" min="1" step="0.01" required placeholder="0.00" />
+                </div>
+                <button type="submit" class="btn btn-warning btn-block">Withdraw Funds</button>
+              </form>
+
+              <!-- Transfer -->
+              <form id="transfer-form" class="action-form">
+                <div class="input-group">
+                  <label for="transfer-from">From Account</label>
+                  <select id="transfer-from" required></select>
+                </div>
+                <div class="input-group">
+                  <label for="transfer-to">To Account ID</label>
+                  <input type="text" id="transfer-to" required placeholder="Account UUID" />
+                </div>
+                <div class="input-group">
+                  <label for="transfer-amount">Amount</label>
+                  <input type="number" id="transfer-amount" min="1" step="0.01" required placeholder="0.00" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Transfer Funds</button>
+              </form>
+            </div>
+          </section>
+
+          <!-- History -->
+          <section class="history-section glass-panel">
+            <div class="section-header">
+              <h3>Recent Transactions</h3>
+              <select id="history-account-filter">
+                <option value="">All Accounts</option>
+              </select>
+            </div>
+            <div id="transactions-list" class="transactions-list">
+              <!-- Transactions injected here -->
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
